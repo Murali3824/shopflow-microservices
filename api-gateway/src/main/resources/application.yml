@@ -1,0 +1,91 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  # ── Config Server ──────────────────────────────────────────────
+  # Fetches additional configuration (Redis, JWT, etc.) from Config Server
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  # ── Spring Cloud Gateway ───────────────────────────────────────
+  cloud:
+    gateway:
+      server:
+        webflux:
+          # Global CORS (adjust origins for production)
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowed-origins: "*"
+                allowed-methods: "*"
+                allowed-headers: "*"
+
+          routes:
+
+            # ── auth-service ──────────────────────────────────────
+            - id: auth-service
+              uri: lb://auth-service
+              predicates:
+                - Path=/api/auth/**
+              filters: []
+
+            # ── user-service ──────────────────────────────────────
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/users/**
+              filters: []
+
+            # ── seller-service ────────────────────────────────────
+            - id: seller-service
+              uri: lb://seller-service
+              predicates:
+                - Path=/api/sellers/**
+              filters: []
+
+            # ── product-service ───────────────────────────────────
+            - id: product-service
+              uri: lb://product-service
+              predicates:
+                - Path=/api/products/**, /api/categories/**
+              filters: []
+
+            # ── order-service ─────────────────────────────────────
+            - id: order-service
+              uri: lb://order-service
+              predicates:
+                - Path=/api/orders/**, /api/cart/**
+              filters: []
+
+            # ── payment-service ───────────────────────────────────
+            - id: payment-service
+              uri: lb://payment-service
+              predicates:
+                - Path=/api/payments/**
+              filters: []
+
+            # ── notification-service ──────────────────────────────
+            - id: notification-service
+              uri: lb://notification-service
+              predicates:
+                - Path=/api/notifications/**
+              filters: []
+
+            # ── review-service ────────────────────────────────────
+            - id: review-service
+              uri: lb://review-service
+              predicates:
+                - Path=/api/reviews/**
+              filters: []
+
+            # ── admin-service ─────────────────────────────────────
+            - id: admin-service
+              uri: lb://admin-service
+              predicates:
+                - Path=/api/admin/**
+              filters: []
+
+# Note: Eureka and Logging settings are now inherited from Config Server
