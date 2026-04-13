@@ -1,0 +1,37 @@
+# Notification Service Centralized Configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notification_db
+    username: postgres
+    password: Murali@3824
+    driver-class-name: org.postgresql.Driver
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.use.type.headers: true
+        spring.json.trusted.packages: "com.shopflow.*"
+
+  mail:
+    host: smtp.mailtrap.io
+    port: 587
+    username: 7af3a4b058fdd5
+    password: deb613057736fc
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    from: noreply@shopflow.dev
+
+logging:
+  level:
+    com.shopflow.notification: DEBUG
+    org.springframework.kafka: INFO
+    org.springframework.mail: DEBUG

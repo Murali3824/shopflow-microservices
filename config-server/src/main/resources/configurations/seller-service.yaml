@@ -1,0 +1,14 @@
+# Seller Service Centralized Configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/seller_db
+    username: postgres
+    password: Murali@3824
+    driver-class-name: org.postgresql.Driver
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+logging:
+  level:
+    com.shopflow.seller: DEBUG

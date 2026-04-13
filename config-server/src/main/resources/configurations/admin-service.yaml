@@ -1,0 +1,17 @@
+# Admin Service Centralized Configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/admin_db
+    username: postgres
+    password: Murali@3824
+    driver-class-name: org.postgresql.Driver
+
+spring.cloud.openfeign.client:
+  config:
+    default:
+      connect-timeout: 5000
+      read-timeout: 10000
+
+logging:
+  level:
+    com.shopflow.admin: DEBUG

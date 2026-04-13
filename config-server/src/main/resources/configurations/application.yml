@@ -1,0 +1,16 @@
+# Global defaults served to ALL services that connect to this config server
+shopflow:
+  config:
+    test-property: "Config server is working correctly"
+    environment: local
+
+# Default Eureka registration for all services
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
