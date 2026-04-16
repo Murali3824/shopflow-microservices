@@ -1,0 +1,36 @@
+{
+  "analysis": {
+    "analyzer": {
+      "english": {
+        "type": "standard",
+        "stopwords": "_english_"
+      },
+      "english_exact": {
+        "type": "custom",
+        "tokenizer": "standard",
+        "filter": [
+          "lowercase"
+        ]
+      }
+    },
+    "filter": {
+      "english_stop": {
+        "type": "stop",
+        "stopwords": "_english_"
+      },
+      "english_stemmer": {
+        "type": "stemmer",
+        "language": "english"
+      },
+      "english_possessive_stemmer": {
+        "type": "stemmer",
+        "language": "possessive_english"
+      }
+    }
+  },
+  "index": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "max_result_window": 10000
+  }
+}
