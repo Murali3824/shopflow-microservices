@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; }
+        .header { background-color: #e9c46a; padding: 24px; text-align: center; }
+        .header h1 { color: #333333; margin: 0; font-size: 22px; }
+        .body { padding: 32px; color: #333333; }
+        .body h2 { font-size: 18px; margin-bottom: 8px; }
+        .alert-box { background-color: #fff8e1; border-left: 4px solid #e9c46a; padding: 16px; border-radius: 4px; margin: 20px 0; font-size: 14px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eeeeee; }
+        .detail-label { color: #777777; font-size: 14px; }
+        .detail-value { font-weight: bold; font-size: 14px; }
+        .stock-number { font-size: 32px; font-weight: bold; color: #e76f51; text-align: center; margin: 16px 0; }
+        .footer { background-color: #f4f4f4; text-align: center; padding: 16px; font-size: 12px; color: #aaaaaa; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>ShopFlow — Low Stock Alert</h1>
+    </div>
+    <div class="body">
+        <h2 th:text="'Hi ' + ${sellerName} + ','">Hi Seller,</h2>
+        <p>One of your products is running low on stock. Please restock soon to avoid missing orders.</p>
+        <div class="detail-row">
+            <span class="detail-label">Product</span>
+            <span class="detail-value" th:text="${productName}">—</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">SKU</span>
+            <span class="detail-value" th:text="${skuCode}">—</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Low Stock Threshold</span>
+            <span class="detail-value" th:text="${lowStockThreshold}">—</span>
+        </div>
+        <div class="stock-number" th:text="${currentStock} + ' units remaining'">— units remaining</div>
+        <div class="alert-box">
+            Log in to your ShopFlow seller dashboard to update your inventory before stock runs out.
+        </div>
+    </div>
+    <div class="footer">
+        &copy; ShopFlow. All rights reserved.
+    </div>
+</div>
+</body>
+</html>

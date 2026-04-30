@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; }
+        .header { background-color: #0077b6; padding: 24px; text-align: center; }
+        .header h1 { color: #ffffff; margin: 0; font-size: 22px; }
+        .body { padding: 32px; color: #333333; }
+        .body h2 { font-size: 18px; margin-bottom: 8px; }
+        .tracking-box { background-color: #e0f4ff; border-left: 4px solid #0077b6; padding: 16px; border-radius: 4px; margin: 20px 0; }
+        .tracking-box p { margin: 0; font-size: 14px; color: #333333; }
+        .tracking-box span { font-size: 20px; font-weight: bold; color: #0077b6; letter-spacing: 2px; }
+        .footer { background-color: #f4f4f4; text-align: center; padding: 16px; font-size: 12px; color: #aaaaaa; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>ShopFlow</h1>
+    </div>
+    <div class="body">
+        <h2 th:text="'Hi ' + ${fullName} + ','">Hi User,</h2>
+        <p>Great news! Your order has been shipped and is on its way to you.</p>
+        <div class="detail-row">
+            <span class="detail-label">Order ID</span>
+            <span class="detail-value" th:text="${orderId}">—</span>
+        </div>
+        <div class="tracking-box">
+            <p>Tracking Number</p>
+            <span th:text="${trackingNumber}">—</span>
+        </div>
+        <p>Use your tracking number to follow your shipment with the courier provider.</p>
+    </div>
+    <div class="footer">
+        &copy; ShopFlow. All rights reserved.
+    </div>
+</div>
+</body>
+</html>
